@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hackstarter | Home</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="logo"><a href="/home">Hackstarter</a></div>
+    <div class="user-info">
+      <span class="username">[Guest]</span>
+      <span class="rank">Rank: Unranked</span>
+      <a href="/login">Logout</a>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-content">
+    <div class="welcome-content">
+        <div class="welcome-left">
+        <h1>Welcome back, [Guest]</h1>
+        <p>Your next step is ready. Let's continue learning.</p>
+        <button class="continue-button">Continue Module</button>
+        </div>
+
+        <div class="welcome-shortcuts">
+            <div class="shortcut-row">
+                <div class="shortcut-links">
+                    <h3>Shortcuts</h3>
+                    <ul>
+                        <li><a href="#">My Lair</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Loadout</a></li>
+                        <li><a href="#">Settings</a></li>
+                    </ul>
+                </div>
+            
+                <div class="currency-box">
+                    <h4>Your Wallet</h4>
+                    <p>H$: <strong>275</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+        <section class="modules">
+        <h2>Learning Modules</h2>
+        <div class="module-grid">
+            <a href="/module/internet" class="module-card">
+                <h3>Internet & Hacking</h3>
+                <div class="progress-bar"><div class="progress" style="width: 50%;"></div></div>
+                <p>50% complete</p>
+            </a>
+            <a href="/module/cyber-safety" class="module-card">
+                <h3>Cyber Safety</h3>
+                <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
+                <p>80% complete</p>
+            </a>
+            <a href="/module/networking" class="module-card locked">
+                <h3>Networking Basics</h3>
+                <div class="progress-bar"><div class="progress" style="width: 0%;"></div></div>
+                <p>Locked</p>
+            </a>
+            <a href="/module/web-vulns" class="module-card locked">
+                <h3>Web Vulnerabilities</h3>
+                <div class="progress-bar"><div class="progress" style="width: 0%;"></div></div>
+                <p>Locked</p>
+            </a>
+        </div>
+        </section>
+        <section class="game-modes">
+            <h2>Game Modes</h2>
+            <div class="modes-grid">
+              <div class="mode-card">Ranked</div>
+              <div class="mode-card">Quick Match</div>
+              <div class="mode-card">Custom / AI</div>
+            </div>
+        </section>
+
+  </main>
+
+</body>
+</html>
