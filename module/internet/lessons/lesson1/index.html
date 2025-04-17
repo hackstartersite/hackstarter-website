@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 1: What is Hacking?</title>
+  <link rel="stylesheet" href="../../../../css/style.css">
+</head>
+<body>
+  <div class="lesson-container">
+    <h1>Lesson 1: What is Hacking?</h1>
+    <p>This lesson introduces you to the world of hacking, ethics, and hacker types.</p>
+
+    <div class="section-list">
+      <a href="lesson1/material.html" class="section-link" data-section="material">
+        <span class="check"></span>
+        <span>1. Material</span>
+      </a>
+
+      <a href="lesson1/example.html" class="section-link" data-section="example">
+        <span class="check"></span>
+        <span>2. Example Hack</span>
+      </a>
+
+      <a href="lesson1/quiz.html" class="section-link" data-section="quiz">
+        <span class="check"></span>
+        <span>3. Quiz</span>
+      </a>
+
+      <a href="lesson1/deepdive.html" class="section-link" data-section="deepdive">
+        <span class="check"></span>
+        <span>4. Deep Dive</span>
+      </a>
+
+      <a href="lesson1/battle.html" class="section-link" data-section="battle">
+        <span class="check"></span>
+        <span>5. Battle</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".section-link").forEach(link => {
+        const sectionId = "lesson1-" + link.dataset.section;
+        const isComplete = localStorage.getItem(sectionId) === "true";
+        if (isComplete) {
+          link.querySelector(".check").textContent = "✔️";
+          link.classList.add("completed");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

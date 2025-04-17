@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 1: Material – What is Hacking?</title>
+  <link rel="stylesheet" href="../../../../../css/lesson.css">
+</head>
+<body>
+  <div class="lesson-container">
+    <h1>1. Material: What is Hacking?</h1>
+
+    <p><strong>Hacking</strong> is the act of finding creative ways to manipulate systems — usually in ways they weren’t intended to be used. Sometimes it’s done to fix or test things. Other times, it’s done to break in or cause harm.</p>
+
+    <h2>Types of Hackers</h2>
+    <ul>
+      <li><strong>White Hat:</strong> Ethical hackers who help defend systems and find bugs before the bad guys do.</li>
+      <li><strong>Black Hat:</strong> Hackers who attack systems illegally for money, data, or chaos.</li>
+      <li><strong>Gray Hat:</strong> Hackers who operate in the gray zone — not always legal, but not always malicious either.</li>
+    </ul>
+
+    <h2>Real-World Analogy</h2>
+    <p>Imagine a building with a locked door:</p>
+    <ul>
+      <li>The <strong>white hat</strong> tests the door, reports any weakness, and helps the owner install a better lock.</li>
+      <li>The <strong>black hat</strong> tries to pick the lock and steal what’s inside.</li>
+      <li>The <strong>gray hat</strong> sneaks in, finds the weak lock, and tells the owner... but didn’t have permission to do it.</li>
+    </ul>
+
+    <h2>What Hackstarter Is (and Isn’t)</h2>
+    <p>This platform is a safe and ethical space to learn how systems work, how they’re attacked, and how to defend them.</p>
+    <ul>
+      <li>✔️ No illegal activities</li>
+      <li>✔️ All learning is simulated</li>
+      <li>✔️ You’ll grow powerful — and responsible</li>
+    </ul>
+
+    <label class="completion-check">
+        <input type="checkbox" id="complete-checkbox">
+        Done reading?
+    </label>
+
+    <p><a href="index.html" class="back-link">← Back to Lesson Hub</a></p>
+  </div>
+
+  <script>
+    const checkbox = document.getElementById("complete-checkbox");
+
+    if (localStorage.getItem("lesson1-material") === "true") {
+        checkbox.checked = true;
+    }
+
+    checkbox.addEventListener("change", () => {
+        localStorage.setItem("lesson1-material", checkbox.checked ? "true" : "false");
+    });
+  </script>
+</body>
+</html>

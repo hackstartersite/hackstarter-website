@@ -1,0 +1,93 @@
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: #58a6ff;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.completion-check {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 1rem;
+    gap: 10px;
+    color: #c9d1d9;
+}
+
+.completion-check input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+body {
+    background-color: #1e2a35;
+    color: #c9d1d9;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .lesson-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 20px;
+    background-color: #0d1117;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .lesson-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+  }
+  
+  .lesson-container h2 {
+    font-size: 1.4rem;
+    margin-top: 30px;
+    color: #58a6ff;
+  }
+  
+  .lesson-container p {
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  
+  .lesson-container ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .lesson-container li {
+    margin-bottom: 10px;
+  }
+  
+  .completion-check {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 1rem;
+    gap: 10px;
+    color: #c9d1d9;
+  }
+  
+  .completion-check input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: #58a6ff;
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }

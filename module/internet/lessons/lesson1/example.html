@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 1: Example Hack – Phishing</title>
+  <link rel="stylesheet" href="../../../../../css/lesson.css">
+</head>
+<body>
+  <div class="lesson-container">
+    <h1>2. Example Hack: Phishing</h1>
+
+    <p>Meet Alex. They’re about to log into their favorite online game. But something’s not quite right...</p>
+
+    <p>Instead of the real login page, Alex lands on a page that looks <em>almost</em> identical — same logo, same layout, same username and password fields.</p>
+
+    <h2>What’s happening?</h2>
+    <p>This is a <strong>phishing attack</strong> — a fake login page designed to trick people into entering their real credentials.</p>
+
+    <h2>How it works</h2>
+    <ol>
+      <li>The hacker creates a perfect clone of the real login page</li>
+      <li>They send it to Alex through an email, fake ad, or message</li>
+      <li>Alex logs in — but their password goes straight to the hacker</li>
+    </ol>
+
+    <h2>How to spot it</h2>
+    <ul>
+      <li>Look at the <strong>URL</strong> — is it correct?</li>
+      <li>Check for <strong>HTTPS</strong> and a padlock symbol</li>
+      <li>Does the page feel <em>off</em> or slightly outdated?</li>
+    </ul>
+
+    <p>Here's a comparison:</p>
+    
+    <ul>
+        <li><strong>Real:</strong>
+            <a href="https://gamezone.com/login" target="_blank" rel="noopener noreferrer">
+                https://gamezone.com/login
+            </a>
+        </li>
+        <li><strong>Fake:</strong>
+            <a href="https://login.gamez0ne.net" target="_blank" rel="noopener noreferrer">
+                https://login.gamez0ne.net
+            </a>
+        </li>
+    </ul>
+
+    <p>We will be covering phishing more in a separate module as it is one of the most common and successful attack types in the real world. For now, understanding the concept is good enough.</p>
+
+    <label class="completion-check">
+      <input type="checkbox" id="complete-checkbox">
+      Done Reading?
+    </label>
+
+    <p><a href="index.html" class="back-link">← Back to Lesson Hub</a></p>
+  </div>
+
+  <script>
+    const checkbox = document.getElementById("complete-checkbox");
+    if (localStorage.getItem("lesson1-example") === "true") {
+      checkbox.checked = true;
+    }
+
+    checkbox.addEventListener("change", () => {
+      localStorage.setItem("lesson1-example", checkbox.checked ? "true" : "false");
+    });
+  </script>
+</body>
+</html>
