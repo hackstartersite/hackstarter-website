@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Lesson 1: What is Hacking?</title>
   <link rel="stylesheet" href="../../../../css/style.css">
+  <link rel="stylesheet" href="../../../../css/lesson.css">
 </head>
 <body>
   <div class="lesson-container">
@@ -38,6 +39,12 @@
     </div>
   </div>
 
+  <div id="lesson-finished" style="display: none; margin-top: 30px;">
+    <p style="font-size: 1.2rem; font-weight: 500;">🎉 Congratulations! You have finished this lesson! Time to keep moving!</p>
+  </div>
+  
+  <p><a href="../index.html" class="continue-button">← Go Back to Module Overview</a></p>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".section-link").forEach(link => {
@@ -49,6 +56,36 @@
         }
       });
     });
-  </script>
+
+    function checkLessonCompletion() {
+  const suffixes = ["material", "example", "quiz", "deepdive", "battle"];
+
+  const completed = suffixes.every(key => {
+    return localStorage.getItem("lesson1-" + key) === "true";
+  });
+
+  const finishedBox = document.getElementById("lesson-finished");
+  if (finishedBox) {
+    finishedBox.style.display = completed ? "block" : "none";
+  }
+}
+
+
+  // Call it on page load too:
+  document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".section-link").forEach(link => {
+    const sectionId = "lesson1-" + link.dataset.section;
+    const isComplete = localStorage.getItem(sectionId) === "true";
+    if (isComplete) {
+      link.querySelector(".check").textContent = "✔️";
+      link.classList.add("completed");
+    }
+  });
+
+  checkLessonCompletion(); // Moved inside DOMContentLoaded
+});
+
+
+    </script>
 </body>
 </html>

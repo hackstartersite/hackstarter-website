@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 1: Deep Dive – What is Hacking?</title>
+  <link rel="stylesheet" href="../../../../../css/lesson.css" />
+</head>
+<body>
+  <div class="lesson-container">
+    <h1>4. Deep Dive: What is Hacking?</h1>
+
+    <p>This section is for the curious. Explore as many (or as few) of the topics below as you want. Only the real ones will actually explore everything — but there’s no pressure. Only the “Done exploring?” checkbox at the bottom counts toward lesson completion.</p>
+    <p>Hackstarter doesn't provide all the info about a topic, but it is a good <strong>starting point</strong>. If you are interested in any topic below, you can use the internet to find out more about it.</p>
+
+    <div class="deep-dive-topic">
+      <label class="completion-check">
+        <input type="checkbox" id="origin-checkbox">
+        <strong>⚙️ The Origins of Hacking</strong>
+      </label>
+      <p>In the 1960s, MIT students coined the term "hacking" while experimenting with telephones and early computers. They weren’t criminals — just curious minds bending systems in creative ways.</p>
+    </div>
+
+    <div class="deep-dive-topic">
+      <label class="completion-check">
+        <input type="checkbox" id="hackers-checkbox">
+        <strong>👤 Famous Hackers & Controversies</strong>
+      </label>
+      <p>Kevin Mitnick, once a most-wanted hacker, became a cybersecurity consultant. Groups like Anonymous walk a controversial line — seen by some as heroes, by others as digital threats.</p>
+    </div>
+
+    <div class="deep-dive-topic">
+      <label class="completion-check">
+        <input type="checkbox" id="ctf-checkbox">
+        <strong>🎮 Hacking as a Game: CTFs & Cyber Challenges (Different from Hackstarter's ranked mode) </strong>
+      </label>
+      <p>CTFs (Capture The Flag competitions) train hackers through puzzles that simulate real-world attacks. Think of it as the gym for ethical hacking skills — timed, fun, and competitive.</p>
+    </div>
+
+    <div class="deep-dive-topic">
+      <label class="completion-check">
+        <input type="checkbox" id="ethics-checkbox">
+        <strong>💡 Hacking Ethics: Where's the Line?</strong>
+      </label>
+      <p>Suppose you find a flaw in a system without permission — do you report it? Ethics in hacking isn’t always black and white. This is where white hats and gray hats start to blur.</p>
+    </div>
+
+    <label class="completion-check">
+      <input type="checkbox" id="complete-checkbox">
+      ✅ Done exploring?
+    </label>
+
+    <p><a href="index.html" class="back-link">← Back to Lesson Hub</a></p>
+  </div>
+
+  <script>
+    const doneCheckbox = document.getElementById("complete-checkbox");
+
+    // Load saved completion
+    if (localStorage.getItem("lesson1-deepdive") === "true") {
+      doneCheckbox.checked = true;
+    }
+
+    doneCheckbox.addEventListener("change", () => {
+      localStorage.setItem("lesson1-deepdive", doneCheckbox.checked ? "true" : "false");
+    });
+  </script>
+</body>
+</html>

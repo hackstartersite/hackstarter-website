@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 1: Battle – Ethics Meter</title>
+  <link rel="stylesheet" href="../../../../../css/lesson.css" />
+</head>
+<body>
+  <div class="lesson-container">
+    <h1>5. Battle: The Ethics Meter</h1>
+
+    <p>Drag each action into the correct category: <strong>Ethical</strong> or <strong>Unethical</strong>. This is about intent — think like a responsible hacker.</p>
+
+    <div class="drag-container">
+      <div class="draggables" id="draggables">
+        <div class="card" draggable="true" data-answer="ethical">Contact the website admin about a vulnerability you found</div>
+        <div class="card" draggable="true" data-answer="unethical">Exploit a website just because it was poorly secured</div>
+        <div class="card" draggable="true" data-answer="unethical">Access private files without permission</div>
+        <div class="card" draggable="true" data-answer="ethical">Test your own server for weaknesses</div>
+        <div class="card" draggable="true" data-answer="unethical">Brag about breaking into sites on social media</div>
+      </div>
+
+      <div class="dropzones">
+        <div class="dropzone" data-zone="ethical">
+          <h2>🟢 Ethical</h2>
+        </div>
+        <div class="dropzone" data-zone="unethical">
+          <h2>🔴 Unethical</h2>
+        </div>
+      </div>
+    </div>
+
+    <p><a href="index.html" class="back-link">← Back to Lesson Hub</a></p>
+  </div>
+
+  <div id="overlay" class="overlay">
+    <div class="flag-box">
+      <div id="flagText" class="flag-text">🏳️ You’ve placed everything correctly. White Hat wins!</div>
+      <button class="restart-button" onclick="restartBattle()">Restart Battle</button>
+    </div>
+  </div>
+
+  <script src="../../../../../js/dragbattle.js"></script>
+</body>
+</html>

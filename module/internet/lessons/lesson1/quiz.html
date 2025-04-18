@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson 1: Quiz – What is Hacking?</title>
+  <link rel="stylesheet" href="../../../../../css/lesson.css" />
+</head>
+<body>
+  <div class="lesson-container">
+    <h1>3. Quiz: What is Hacking?</h1>
+
+    <form id="quiz-form">
+      <div class="quiz-question" id="q1-block">
+        <p><strong>1.</strong> What type of hacker is hired or given permission to legally test systems for weaknesses?</p>
+        <label><input type="radio" name="q1" value="a"> A) White Hat</label><br>
+        <label><input type="radio" name="q1" value="b"> B) Black Hat</label><br>
+        <label><input type="radio" name="q1" value="c"> C) Gray Hat</label><br>
+        <label><input type="radio" name="q1" value="d"> D) Purple Rain</label>
+      </div>
+
+      <div class="quiz-question" id="q2-block">
+        <p><strong>2.</strong> What is Hackstarter for?</p>
+        <label><input type="radio" name="q2" value="a"> A) Breaking into systems illegally</label><br>
+        <label><input type="radio" name="q2" value="b"> B) Learning hacking safely and ethically</label><br>
+        <label><input type="radio" name="q2" value="c"> C) Making money fast</label><br>
+        <label><input type="radio" name="q2" value="d"> D) Pranking your friends</label>
+      </div>
+
+      <div class="quiz-question" id="q3-block">
+        <p><strong>3.</strong> What is phishing?</p>
+        <label><input type="radio" name="q3" value="a"> A) Clicking ads</label><br>
+        <label><input type="radio" name="q3" value="b"> B) Stealing someone’s ID</label><br>
+        <label><input type="radio" name="q3" value="c"> C) Tricking users with a fake login</label><br>
+        <label><input type="radio" name="q3" value="d"> D) Building a website</label>
+      </div>
+
+      <div class="quiz-buttons">
+        <button type="submit">Submit Quiz</button>
+        <button type="button" id="reset-btn">Reset Quiz</button>
+      </div>
+
+      <p id="quiz-warning" class="quiz-warning" style="display: none;"></p>
+      <p id="quiz-result" class="quiz-result" style="display: none;">✅ Quiz completed! Great job.</p>
+    </form>
+
+    <p><a href="index.html" class="back-link">← Back to Lesson Hub</a></p>
+  </div>
+
+  <script>
+    const form = document.getElementById('quiz-form');
+    const result = document.getElementById('quiz-result');
+    const warning = document.getElementById('quiz-warning');
+    const resetBtn = document.getElementById('reset-btn');
+    const quizId = "lesson1-quiz";
+
+    // Load saved state
+    if (localStorage.getItem(quizId) === "true") {
+      result.style.display = "block";
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const q1 = form.q1.value;
+      const q2 = form.q2.value;
+      const q3 = form.q3.value;
+
+      // Clear previous styles
+      ["q1-block", "q2-block", "q3-block"].forEach(id => {
+        document.getElementById(id).classList.remove("incorrect");
+      });
+
+      if (!q1 || !q2 || !q3) {
+        warning.textContent = "Please answer all questions before submitting.";
+        warning.style.display = "block";
+        result.style.display = "none";
+        return;
+      }
+
+      let incorrect = [];
+
+      if (q1 !== "a") incorrect.push("q1-block");
+      if (q2 !== "b") incorrect.push("q2-block");
+      if (q3 !== "c") incorrect.push("q3-block");
+
+      if (incorrect.length > 0) {
+        incorrect.forEach(id => {
+          document.getElementById(id).classList.add("incorrect");
+        });
+        warning.textContent = "🚫 Some answers are incorrect. Check the highlighted questions and try again.";
+        warning.style.display = "block";
+        result.style.display = "none";
+      } else {
+        localStorage.setItem(quizId, "true");
+        result.style.display = "block";
+        warning.style.display = "none";
+      }
+    });
+
+    resetBtn.addEventListener("click", () => {
+      localStorage.removeItem(quizId);
+      result.style.display = "none";
+      warning.style.display = "none";
+      form.reset();
+      ["q1-block", "q2-block", "q3-block"].forEach(id => {
+        document.getElementById(id).classList.remove("incorrect");
+      });
+    });
+
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
+      input.addEventListener('change', () => {
+        warning.style.display = "none";
+        input.closest(".quiz-question").classList.remove("incorrect");
+      });
+    });
+  </script>
+</body>
+</html>

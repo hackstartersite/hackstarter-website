@@ -497,3 +497,18 @@
   .section-link.completed {
     border-left: 4px solid #238636;
   }
+
+  .continue-button {
+    background-color: #7289da;
+    color: white; 
+    font-size: 1rem;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .continue-button:hover {
+    background-color: #dab672;
+  }
