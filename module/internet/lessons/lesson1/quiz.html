@@ -4,8 +4,21 @@
   <meta charset="UTF-8" />
   <title>Lesson 1: Quiz – What is Hacking?</title>
   <link rel="stylesheet" href="../../../../../css/lesson.css" />
+  <script src="../../../../../js/currency.js"></script>
 </head>
 <body>
+  <div id="currency-display" style="
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #1d2733;
+  color: #8dfba1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 1000;">
+  💰 H$ 0
+</div>
   <div class="lesson-container">
     <h1>3. Quiz: What is Hacking?</h1>
 
@@ -51,7 +64,7 @@
     const result = document.getElementById('quiz-result');
     const warning = document.getElementById('quiz-warning');
     const resetBtn = document.getElementById('reset-btn');
-    const quizId = "lesson1-quiz";
+    const quizId = "lesson1.1-quiz";
 
     // Load saved state
     if (localStorage.getItem(quizId) === "true") {
@@ -113,6 +126,13 @@
         input.closest(".quiz-question").classList.remove("incorrect");
       });
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const sectionId = 'lesson1.1-quiz'; // change for each page
+  showCurrencyBalance();
+  rewardSection(sectionId); // always call to ensure label is applied
+});
+
   </script>
 </body>
 </html>

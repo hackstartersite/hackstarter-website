@@ -4,8 +4,22 @@
   <meta charset="UTF-8" />
   <title>Hackstarter | Home</title>
   <link rel="stylesheet" href="../css/style.css" />
+  <script src="../../js/currency.js"></script>
 </head>
 <body>
+    <div id="currency-display" style="
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #1d2733;
+  color: #8dfba1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 1000;">
+  💰 H$ 0
+</div>
+
 
   <header class="top-bar">
     <div class="logo"><a href="/home">Hackstarter</a></div>
@@ -82,6 +96,11 @@
         </section>
 
   </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+  showCurrencyBalance(); // from currency.js
+});
 
+  </script>
 </body>
 </html>

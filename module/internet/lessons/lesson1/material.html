@@ -4,8 +4,38 @@
   <meta charset="UTF-8">
   <title>Lesson 1: Material – What is Hacking?</title>
   <link rel="stylesheet" href="../../../../../css/lesson.css">
+  <script src="../../../../../js/currency.js"></script>
+  <script>
+    const sectionId = 'lesson1.1-material'; // change depending on the section
+  
+    function markCompleteAndReward() {
+      localStorage.setItem(sectionId, 'true');
+      rewardSection(sectionId); // checks if already rewarded and gives H$
+    }
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      showCurrencyBalance();
+  
+      const button = document.getElementById("complete-checkbox");
+      if (button) {
+        button.addEventListener("click", markCompleteAndReward);
+      }
+    });
+  </script>
 </head>
 <body>
+  <div id="currency-display" style="
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #1d2733;
+  color: #8dfba1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 1000;">
+  💰 H$ 0
+</div>
   <div class="lesson-container">
     <h1>1. Material: What is Hacking?</h1>
     <p>Welcome to your first lesson on Hackstarter. You're standing at the edge of a vast digital world — the real world — one hidden beneath apps, browsers, and shiny buttons. The internet is not what it seems. It's more than just websites. It's a living, breathing system of endless connections — and you're about to learn how to control it.</p>
@@ -51,13 +81,19 @@
   <script>
     const checkbox = document.getElementById("complete-checkbox");
 
-    if (localStorage.getItem("lesson1-material") === "true") {
+    if (localStorage.getItem("lesson1.1-material") === "true") {
         checkbox.checked = true;
     }
 
     checkbox.addEventListener("change", () => {
-        localStorage.setItem("lesson1-material", checkbox.checked ? "true" : "false");
+        localStorage.setItem("lesson1.1-material", checkbox.checked ? "true" : "false");
     });
+    document.addEventListener("DOMContentLoaded", () => {
+  const sectionId = 'lesson1.1-material'; // change for each page
+  showCurrencyBalance();
+  rewardSection(sectionId); // always call to ensure label is applied
+});
+
   </script>
 </body>
 </html>

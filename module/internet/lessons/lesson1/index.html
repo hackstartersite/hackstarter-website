@@ -5,87 +5,95 @@
   <title>Lesson 1: What is Hacking?</title>
   <link rel="stylesheet" href="../../../../css/style.css">
   <link rel="stylesheet" href="../../../../css/lesson.css">
+  <script src="../../../../../js/currency.js"></script>
 </head>
 <body>
+  <div id="currency-display" style="
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #1d2733;
+  color: #8dfba1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 1000;">
+  💰 H$ 0
+</div>
   <div class="lesson-container">
     <h1>Lesson 1: What is Hacking?</h1>
     <p>This lesson introduces you to the world of hacking, ethics, and hacker types.</p>
 
     <div class="section-list">
-      <a href="lesson1/material.html" class="section-link" data-section="material">
-        <span class="check"></span>
+      <a href="lesson1/material.html" class="section-link" data-section="lesson1.1-material">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-material">
         <span>1. Material</span>
       </a>
+      
 
-      <a href="lesson1/example.html" class="section-link" data-section="example">
-        <span class="check"></span>
+      <a href="lesson1/example.html" class="section-link" data-section="lesson1.1-example">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-example">
         <span>2. Example Hack</span>
       </a>
 
-      <a href="lesson1/quiz.html" class="section-link" data-section="quiz">
-        <span class="check"></span>
+      <a href="lesson1/quiz.html" class="section-link" data-section="lesson1.1-quiz">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-quiz">
         <span>3. Quiz</span>
       </a>
 
-      <a href="lesson1/deepdive.html" class="section-link" data-section="deepdive">
-        <span class="check"></span>
+      <a href="lesson1/deepdive.html" class="section-link" data-section="lesson1.1-deepdive">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-deepdive">
         <span>4. Deep Dive</span>
       </a>
 
-      <a href="lesson1/battle.html" class="section-link" data-section="battle">
-        <span class="check"></span>
+      <a href="lesson1/battle.html" class="section-link" data-section="lesson1.1-battle">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-battle">
         <span>5. Battle</span>
       </a>
     </div>
+    <div class="button-row">
+      <a href="../index.html" class="continue-button">← Go Back to Module Overview</a>
+      <a href="../lessons/lesson2/index.html" class="continue-button next-button" id="continue-button" style="display: none;">Continue to Lesson 2 →</a>
+    </div>
+    
+    <div id="lesson-finished" style="display: none; margin-top: 30px;">
+      <p style="font-size: 1.2rem; font-weight: 500;">🎉 Congratulations! You have finished this lesson! Time to keep moving!</p>
+    </div>    
   </div>
-
-  <div id="lesson-finished" style="display: none; margin-top: 30px;">
-    <p style="font-size: 1.2rem; font-weight: 500;">🎉 Congratulations! You have finished this lesson! Time to keep moving!</p>
-  </div>
-  
-  <p><a href="../index.html" class="continue-button">← Go Back to Module Overview</a></p>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".section-link").forEach(link => {
-        const sectionId = "lesson1-" + link.dataset.section;
-        const isComplete = localStorage.getItem(sectionId) === "true";
-        if (isComplete) {
-          link.querySelector(".check").textContent = "✔️";
-          link.classList.add("completed");
-        }
+      const checkboxes = document.querySelectorAll(".section-checkbox");
+    
+      checkboxes.forEach(checkbox => {
+        const sectionId = checkbox.dataset.sectionId;
+    
+        // Restore saved state
+        checkbox.checked = localStorage.getItem(sectionId) === "true";
+    
+        // Save new state
+        checkbox.addEventListener("change", () => {
+          localStorage.setItem(sectionId, checkbox.checked ? "true" : "false");
+          checkLessonCompletion();
+        });
       });
+    
+      function checkLessonCompletion() {
+        const allComplete = Array.from(checkboxes).every(cb => cb.checked);
+        if (allComplete) {
+          localStorage.setItem("lesson1.1-complete", "true");
+          document.getElementById("lesson-finished").style.display = "block";
+          document.getElementById("continue-button").style.display = "inline-block";
+        } else {
+          localStorage.setItem("lesson1.1-complete", "false");
+          document.getElementById("lesson-finished").style.display = "none";
+          document.getElementById("continue-button").style.display = "none";
+        }
+      }
+    
+      checkLessonCompletion(); // Run on load
     });
-
-    function checkLessonCompletion() {
-  const suffixes = ["material", "example", "quiz", "deepdive", "battle"];
-
-  const completed = suffixes.every(key => {
-    return localStorage.getItem("lesson1-" + key) === "true";
-  });
-
-  const finishedBox = document.getElementById("lesson-finished");
-  if (finishedBox) {
-    finishedBox.style.display = completed ? "block" : "none";
-  }
-}
-
-
-  // Call it on page load too:
-  document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".section-link").forEach(link => {
-    const sectionId = "lesson1-" + link.dataset.section;
-    const isComplete = localStorage.getItem(sectionId) === "true";
-    if (isComplete) {
-      link.querySelector(".check").textContent = "✔️";
-      link.classList.add("completed");
-    }
-  });
-
-  checkLessonCompletion(); // Moved inside DOMContentLoaded
-});
-
-
     </script>
+    
 </body>
 </html>

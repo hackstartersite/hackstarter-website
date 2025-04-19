@@ -4,8 +4,21 @@
         <meta charset="UTF-8">
         <title>Module 1 - Internet & Hacking</title>
         <link rel="stylesheet" href="../../css/style.css">
+        <script src="../../../js/currency.js"></script>
     </head>
     <body>
+        <div id="currency-display" style="
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #1d2733;
+  color: #8dfba1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 1000;">
+  💰 H$ 0
+</div>
         <div class="lesson-section">
             <h1>Internet & Hacking</h1>
             <p>This module will show you how data travels across the internet, how it can be intercepted, how it can be intercepted, analyzed, or exploited by hackers, and how to prevent exploition of it.</p>
@@ -15,37 +28,73 @@
                     <a href="internet/lessons/lesson1/index.html" class="lesson-box" data-lesson="lesson1">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 1: What is Hacking?</span>
+                        <span class="reward-label"></span>
                     </a>
                     <a href="internet/lessons/lesson2/index.html" class="lesson-box" data-lesson="lesson2">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 2: How the internet works</span>
+                        <span class="reward-label"></span>
                     </a>
                     <a href="internet/lessons/lesson3/index.html" class="lesson-box" data-lesson="lesson3">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 3: Data Packets & Protocols</span>
+                        <span class="reward-label"></span>
                     </a>
                     <a href="internet/lessons/lesson4/index.html" class="lesson-box" data-lesson="lesson4">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 4: Tools of the Trade (The Command line)</span>
+                        <span class="reward-label"></span>
                     </a>     
                     <a href="internet/lessons/lesson5/index.html" class="lesson-box" data-lesson="lesson5">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 5: DNS & IP Spoofing (Theory Only)</span>
+                        <span class="reward-label"></span>
                     </a>
                     <a href="internet/lessons/lesson6/index.html" class="lesson-box" data-lesson="lesson6">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 6: Man-in-the-Middle Attacks</span>
+                        <span class="reward-label"></span>
                     </a>
                     <a href="internet/lessons/lesson7/index.html" class="lesson-box" data-lesson="lesson7">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 7: HTTPS & Encryption Basics</span>
+                        <span class="reward-label"></span>
                     </a>
                     <a href="internet/lessons/lesson8/index.html" class="lesson-box" data-lesson="lesson8">
                         <span class ="checkbox-indicator"></span>
                         <span class="lesson-title">Lesson 8: Packet Sniffing Simulation</span>
+                        <span class="reward-label"></span>
                     </a>
                 </div>
             </div>
+            <div class="module-back-button-wrapper">
+                <a href="../../home/index.html" class="module-back-button">← Back to Dashboard</a>
+              </div>              
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              document.querySelectorAll('[data-lesson]').forEach(card => {
+                const lessonId = card.dataset.lesson;
+                const sections = ["material", "example", "quiz", "deepdive", "battle"];
+                
+                const isComplete = sections.every(section => {
+                  return localStorage.getItem(`${lessonId}-${section}`) === 'true';
+                });
+            
+                const checkbox = card.querySelector('.checkbox-indicator');
+            
+                if (isComplete) {
+                  card.classList.add('completed');
+                  if (checkbox) checkbox.textContent = '✅';
+                } else {
+                  card.classList.remove('completed');
+                  if (checkbox) checkbox.textContent = '';
+                }
+              });
+            });
+            document.addEventListener("DOMContentLoaded", () => {
+  showCurrencyBalance(); // from currency.js
+});
+            </script>            
     </body>
 </html>

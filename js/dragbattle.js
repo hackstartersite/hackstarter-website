@@ -40,6 +40,11 @@ function checkBattleResult() {
     localStorage.setItem("lesson1-battle", "true");
     flagText.textContent = "🏳️ You’ve placed everything correctly. White Hat wins!";
     overlay.style.display = 'flex';
+
+    console.log('testing')
+    rewardSection('lesson1.1-battle', 15);
+    showCurrencyBalance();
+
   }
 }
 

@@ -4,8 +4,21 @@
   <meta charset="UTF-8">
   <title>Lesson 1: Example Hack – Phishing</title>
   <link rel="stylesheet" href="../../../../../css/lesson.css">
+  <script src="../../../../../js/currency.js"></script>
 </head>
 <body>
+  <div id="currency-display" style="
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #1d2733;
+  color: #8dfba1;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  z-index: 1000;">
+  💰 H$ 0
+</div>
   <div class="lesson-container">
     <h1>2. Example Hack: Phishing</h1>
 
@@ -60,13 +73,20 @@
 
   <script>
     const checkbox = document.getElementById("complete-checkbox");
-    if (localStorage.getItem("lesson1-example") === "true") {
+    if (localStorage.getItem("lesson1.1-example") === "true") {
       checkbox.checked = true;
     }
 
     checkbox.addEventListener("change", () => {
-      localStorage.setItem("lesson1-example", checkbox.checked ? "true" : "false");
+      localStorage.setItem("lesson1.1-example", checkbox.checked ? "true" : "false");
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const sectionId = 'lesson1.1-example'; // change for each page
+  showCurrencyBalance();
+  rewardSection(sectionId); // always call to ensure label is applied
+});
+
   </script>
 </body>
 </html>

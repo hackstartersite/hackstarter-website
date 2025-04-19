@@ -262,19 +262,3 @@ body {
     font-size: 1.2rem;
     margin-bottom: 10px;
   }
-  
-  .continue-button {
-    background-color: #58a6ff;
-    color: white;
-    font-size: 1rem;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    margin-top: 10px;
-    cursor: pointer;
-  }
-  
-  .continue-button:hover {
-    background-color: #79b8ff;
-  }
-  
