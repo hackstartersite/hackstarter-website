@@ -6,24 +6,24 @@
   <link rel="stylesheet" href="../../../../../css/lesson.css">
   <script src="../../../../../js/currency.js"></script>
 </head>
-<body>
+<body data-section-id="lesson1.1-example">
   <div id="currency-display" style="
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: #1d2733;
-  color: #8dfba1;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: bold;
-  z-index: 1000;">
-  💰 H$ 0
-</div>
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #1d2733;
+    color: #8dfba1;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    z-index: 1000;">
+    💰 H$ 0
+  </div>
+
   <div class="lesson-container">
     <h1>2. Example Hack: Phishing</h1>
 
     <p>Meet Alex. They’re about to log into their favorite online game. But something’s not quite right...</p>
-
     <p>Instead of the real login page, Alex lands on a page that looks <em>almost</em> identical — same logo, same layout, same username and password fields.</p>
 
     <h2>What’s happening?</h2>
@@ -44,22 +44,20 @@
     </ul>
 
     <p>Here's a comparison:</p>
-    
     <ul>
-        <li><strong>Real:</strong>
-            <a href="https://gamezone.com/login" target="_blank" rel="noopener noreferrer">
-                https://gamezone.com/login
-            </a>
-        </li>
-        <li><strong>Fake:</strong>
-            <a href="https://login.gamez0ne.net" target="_blank" rel="noopener noreferrer">
-                https://login.gamez0ne.net
-            </a>
-        </li>
+      <li><strong>Real:</strong>
+        <a href="https://gamezone.com/login" target="_blank" rel="noopener noreferrer">
+          https://gamezone.com/login
+        </a>
+      </li>
+      <li><strong>Fake:</strong>
+        <a href="https://login.gamez0ne.net" target="_blank" rel="noopener noreferrer">
+          https://login.gamez0ne.net
+        </a>
+      </li>
     </ul>
 
     <p>Note: The real website above is a legit website, but the fake website doesn't exist. There will be real demos to demonstrate phishing later.</p>
-
     <p>We will be covering phishing more in a separate module as it is one of the most common and successful attack types in the real world. For now, simply understanding the concept is good enough.</p>
     <p>Most lessons will have an example that happened in the real world. This one is just a demo.</p>
 
@@ -72,21 +70,28 @@
   </div>
 
   <script>
-    const checkbox = document.getElementById("complete-checkbox");
-    if (localStorage.getItem("lesson1.1-example") === "true") {
-      checkbox.checked = true;
-    }
-
-    checkbox.addEventListener("change", () => {
-      localStorage.setItem("lesson1.1-example", checkbox.checked ? "true" : "false");
-    });
-
     document.addEventListener("DOMContentLoaded", () => {
-  const sectionId = 'lesson1.1-example'; // change for each page
-  showCurrencyBalance();
-  rewardSection(sectionId); // always call to ensure label is applied
-});
+      showCurrencyBalance();
 
+      const checkbox = document.getElementById("complete-checkbox");
+      const sectionId = document.body.dataset.sectionId;
+
+      const alreadyCompleted = localStorage.getItem(sectionId) === "true";
+      if (alreadyCompleted) {
+        checkbox.checked = true;
+        checkbox.disabled = true;
+        checkbox.nextSibling.textContent = "Completed";
+      }
+
+      checkbox.addEventListener("change", () => {
+        if (!alreadyCompleted && checkbox.checked) {
+          addCurrency(5);
+          localStorage.setItem(sectionId, "true");
+          checkbox.disabled = true;
+          checkbox.nextSibling.textContent = "Completed";
+        }
+      });
+    });
   </script>
 </body>
 </html>

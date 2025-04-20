@@ -9,75 +9,68 @@
 </head>
 <body>
   <div id="currency-display" style="
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: #1d2733;
-  color: #8dfba1;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  font-weight: bold;
-  z-index: 1000;">
-  💰 H$ 0
-</div>
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #1d2733;
+    color: #8dfba1;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    z-index: 1000;">
+    💰 H$ 0
+  </div>
+
   <div class="lesson-container">
     <h1>Lesson 1: What is Hacking?</h1>
     <p>This lesson introduces you to the world of hacking, ethics, and hacker types.</p>
 
     <div class="section-list">
       <a href="lesson1/material.html" class="section-link" data-section="lesson1.1-material">
-        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-material">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-material" disabled>
         <span>1. Material</span>
       </a>
-      
 
       <a href="lesson1/example.html" class="section-link" data-section="lesson1.1-example">
-        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-example">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-example" disabled>
         <span>2. Example Hack</span>
       </a>
 
       <a href="lesson1/quiz.html" class="section-link" data-section="lesson1.1-quiz">
-        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-quiz">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-quiz" disabled>
         <span>3. Quiz</span>
       </a>
 
-      <a href="lesson1/deepdive.html" class="section-link" data-section="lesson1.1-deepdive">
-        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-deepdive">
+      <a href="lesson1/deepdive.html" class="section-link" data-section-id="lesson1.1-deepdive">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-deepdive" disabled>
         <span>4. Deep Dive</span>
       </a>
 
-      <a href="lesson1/battle.html" class="section-link" data-section="lesson1.1-battle">
-        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-battle">
+      <a href="lesson1/battle.html" class="section-link" data-section-id="lesson1.1-battle">
+        <input type="checkbox" class="section-checkbox" data-section-id="lesson1.1-battle" disabled>
         <span>5. Battle</span>
       </a>
     </div>
+
     <div class="button-row">
       <a href="../index.html" class="continue-button">← Go Back to Module Overview</a>
       <a href="../lessons/lesson2/index.html" class="continue-button next-button" id="continue-button" style="display: none;">Continue to Lesson 2 →</a>
     </div>
-    
+
     <div id="lesson-finished" style="display: none; margin-top: 30px;">
       <p style="font-size: 1.2rem; font-weight: 500;">🎉 Congratulations! You have finished this lesson! Time to keep moving!</p>
-    </div>    
+    </div>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const checkboxes = document.querySelectorAll(".section-checkbox");
-    
+
       checkboxes.forEach(checkbox => {
         const sectionId = checkbox.dataset.sectionId;
-    
-        // Restore saved state
         checkbox.checked = localStorage.getItem(sectionId) === "true";
-    
-        // Save new state
-        checkbox.addEventListener("change", () => {
-          localStorage.setItem(sectionId, checkbox.checked ? "true" : "false");
-          checkLessonCompletion();
-        });
       });
-    
+
       function checkLessonCompletion() {
         const allComplete = Array.from(checkboxes).every(cb => cb.checked);
         if (allComplete) {
@@ -90,10 +83,10 @@
           document.getElementById("continue-button").style.display = "none";
         }
       }
-    
-      checkLessonCompletion(); // Run on load
+
+      checkLessonCompletion();
+      showCurrencyBalance();
     });
-    </script>
-    
+  </script>
 </body>
 </html>

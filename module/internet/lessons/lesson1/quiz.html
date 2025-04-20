@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../../../../../css/lesson.css" />
   <script src="../../../../../js/currency.js"></script>
 </head>
-<body>
+<body data-section-id="lesson1.1-quiz">
   <div id="currency-display" style="
   position: fixed;
   top: 1rem;
@@ -52,6 +52,9 @@
         <button type="button" id="reset-btn">Reset Quiz</button>
       </div>
 
+      <p id="reward-preview" style="margin-top: 1rem; color: #8dfba1; font-weight: bold;"></p>
+      <p id="refund-message" style="margin-top: 0.5rem; color: orange; font-weight: bold; display: none;"></p>
+
       <p id="quiz-warning" class="quiz-warning" style="display: none;"></p>
       <p id="quiz-result" class="quiz-result" style="display: none;">✅ Quiz completed! Great job.</p>
     </form>
@@ -64,75 +67,117 @@
     const result = document.getElementById('quiz-result');
     const warning = document.getElementById('quiz-warning');
     const resetBtn = document.getElementById('reset-btn');
-    const quizId = "lesson1.1-quiz";
-
-    // Load saved state
-    if (localStorage.getItem(quizId) === "true") {
-      result.style.display = "block";
-    }
-
+    const quizId = document.body.dataset.sectionId || "lesson1.1-quiz";
+    const attemptKey = quizId + "-attempts";
+    const rewardGivenKey = quizId + "-rewarded";
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      showCurrencyBalance();
+  
+      // Restore state
+      if (localStorage.getItem(quizId) === "true") {
+        result.style.display = "block";
+      }
+    });
+  
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
+  
       const q1 = form.q1.value;
       const q2 = form.q2.value;
       const q3 = form.q3.value;
-
-      // Clear previous styles
+  
+      // Clear previous highlights
       ["q1-block", "q2-block", "q3-block"].forEach(id => {
         document.getElementById(id).classList.remove("incorrect");
       });
-
+  
       if (!q1 || !q2 || !q3) {
         warning.textContent = "Please answer all questions before submitting.";
         warning.style.display = "block";
         result.style.display = "none";
         return;
       }
-
+  
       let incorrect = [];
-
+  
       if (q1 !== "a") incorrect.push("q1-block");
       if (q2 !== "b") incorrect.push("q2-block");
       if (q3 !== "c") incorrect.push("q3-block");
-
+  
       if (incorrect.length > 0) {
         incorrect.forEach(id => {
           document.getElementById(id).classList.add("incorrect");
         });
+  
+        // Track number of wrong attempts
+        let attempts = parseInt(localStorage.getItem(attemptKey) || "0");
+        attempts++;
+        localStorage.setItem(attemptKey, attempts.toString());
+  
         warning.textContent = "🚫 Some answers are incorrect. Check the highlighted questions and try again.";
         warning.style.display = "block";
         result.style.display = "none";
-      } else {
-        localStorage.setItem(quizId, "true");
-        result.style.display = "block";
-        warning.style.display = "none";
+        updateRewardPreview();
+        return;
+      }
+  
+      // Passed the quiz
+      localStorage.setItem(quizId, "true");
+      result.style.display = "block";
+      warning.style.display = "none";
+  
+      // Only reward if they haven't gotten H$ before
+      if (!localStorage.getItem(rewardGivenKey)) {
+        const attempts = parseInt(localStorage.getItem(attemptKey) || "0");
+        const reward = Math.max(10 - attempts, 5);
+        addCurrency(reward);
+        localStorage.setItem(rewardGivenKey, "true");
       }
     });
-
+  
     resetBtn.addEventListener("click", () => {
-      localStorage.removeItem(quizId);
-      result.style.display = "none";
-      warning.style.display = "none";
-      form.reset();
-      ["q1-block", "q2-block", "q3-block"].forEach(id => {
-        document.getElementById(id).classList.remove("incorrect");
-      });
-    });
+  const wasRewarded = localStorage.getItem(rewardGivenKey) === "true";
+  const attempts = parseInt(localStorage.getItem(attemptKey) || "0");
+  const reward = Math.max(10 - attempts, 5);
 
-    document.querySelectorAll('input[type="radio"]').forEach(input => {
-      input.addEventListener('change', () => {
-        warning.style.display = "none";
-        input.closest(".quiz-question").classList.remove("incorrect");
-      });
-    });
+  if (wasRewarded) {
+    subtractCurrency(reward); // Subtract first
+    document.getElementById("refund-message").textContent = `↩️ H$ refund applied: -${reward}`;
+    document.getElementById("refund-message").style.display = "block";
+  } else {
+    document.getElementById("refund-message").style.display = "none";
+  }
 
-    document.addEventListener("DOMContentLoaded", () => {
-  const sectionId = 'lesson1.1-quiz'; // change for each page
-  showCurrencyBalance();
-  rewardSection(sectionId); // always call to ensure label is applied
+  // Now remove flags
+  localStorage.removeItem(quizId);
+  localStorage.removeItem(attemptKey);
+  localStorage.removeItem(rewardGivenKey);
+
+  // Reset UI
+  form.reset();
+  result.style.display = "none";
+  warning.style.display = "none";
+
+  ["q1-block", "q2-block", "q3-block"].forEach(id => {
+    document.getElementById(id).classList.remove("incorrect");
+  });
+
+  updateRewardPreview();
+  showCurrencyBalance(); // Just in case, refresh display again
 });
 
+
+
+function updateRewardPreview() {
+  const attempts = parseInt(localStorage.getItem(attemptKey) || "0");
+  const reward = Math.max(10 - attempts, 5);
+  document.getElementById("reward-preview").textContent =
+    `💡 You’ll earn +${reward} H$ if you get it right on this attempt.`;
+}
+
+
   </script>
+  
 </body>
 </html>

@@ -17,6 +17,13 @@ function setCurrency(amount) {
   localStorage.setItem(CURRENCY_KEY, String(amount));
 }
 
+function updateCurrencyDisplay() {
+  const display = document.getElementById("currency-display");
+  const balance = localStorage.getItem("currency") || "0";
+  display.textContent = `💰 H$ ${balance}`;
+}
+
+
 // Add currency and log it
 function addCurrency(amount) {
   const current = getCurrency();
@@ -24,6 +31,14 @@ function addCurrency(amount) {
   console.log(`[addCurrency] ${current} + ${amount} = ${newTotal}`);
   setCurrency(newTotal);
 }
+
+function subtractCurrency(amount) {
+  let balance = parseInt(localStorage.getItem("currency") || "0");
+  balance = Math.max(0, balance - amount);
+  localStorage.setItem("currency", balance.toString());
+  updateCurrencyDisplay();
+}
+
 
 // Update balance display
 function showCurrencyBalance() {

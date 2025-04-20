@@ -5,6 +5,8 @@ const zones = document.querySelectorAll('.dropzone');
 const draggables = document.getElementById('draggables');
 const overlay = document.getElementById('overlay');
 const flagText = document.getElementById('flagText');
+const sectionId = document.body.dataset.sectionId;
+
 
 // Drag behavior
 cards.forEach(card => {
@@ -37,12 +39,12 @@ function checkBattleResult() {
   });
 
   if (correct === allCards.length) {
-    localStorage.setItem("lesson1-battle", "true");
+    localStorage.setItem(sectionId, "true");
     flagText.textContent = "🏳️ You’ve placed everything correctly. White Hat wins!";
     overlay.style.display = 'flex';
 
     console.log('testing')
-    rewardSection('lesson1.1-battle', 15);
+    rewardSection(sectionId, 15);
     showCurrencyBalance();
 
   }

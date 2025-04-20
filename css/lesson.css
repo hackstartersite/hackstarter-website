@@ -262,3 +262,44 @@ body {
     font-size: 1.2rem;
     margin-bottom: 10px;
   }
+
+.section-checkbox:checked {
+  background-color: #8dfba1;
+  box-shadow: 0 0 0 2px #1d2733;
+}
+
+.section-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;      /* moved up */
+  left: 4px;     /* moved more left */
+  width: 4px;
+  height: 8px;
+  border: solid #1d2733;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+
+/* Layout only – no color changes */
+.section-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  padding-left: 1rem; /* 👈 Adds space from the left edge */
+}
+
+.section-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #8dfba1;
+  border-radius: 4px;
+  background-color: transparent;
+  position: relative;
+  cursor: default;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}

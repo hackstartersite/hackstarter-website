@@ -23,7 +23,7 @@
     });
   </script>
 </head>
-<body>
+<body data-section-id="lesson1.1-material">
   <div id="currency-display" style="
   position: fixed;
   top: 1rem;
@@ -79,21 +79,29 @@
   </div>
 
   <script>
-    const checkbox = document.getElementById("complete-checkbox");
-
-    if (localStorage.getItem("lesson1.1-material") === "true") {
-        checkbox.checked = true;
-    }
-
-    checkbox.addEventListener("change", () => {
-        localStorage.setItem("lesson1.1-material", checkbox.checked ? "true" : "false");
-    });
     document.addEventListener("DOMContentLoaded", () => {
-  const sectionId = 'lesson1.1-material'; // change for each page
-  showCurrencyBalance();
-  rewardSection(sectionId); // always call to ensure label is applied
-});
+      showCurrencyBalance();
 
+      const checkbox = document.getElementById("complete-checkbox");
+      const sectionId = document.body.dataset.sectionId;
+
+      // Check localStorage and update checkbox + UI
+      const alreadyCompleted = localStorage.getItem(sectionId) === "true";
+      if (alreadyCompleted) {
+        checkbox.checked = true;
+        checkbox.disabled = true;
+        checkbox.nextSibling.textContent = "Completed";
+      }
+
+      checkbox.addEventListener("change", () => {
+        if (!alreadyCompleted && checkbox.checked) {
+          addCurrency(5); // Reward only on first real completion
+          localStorage.setItem(sectionId, "true");
+          checkbox.disabled = true;
+          checkbox.nextSibling.textContent = "Completed";
+        }
+      });
+    });
   </script>
 </body>
 </html>
